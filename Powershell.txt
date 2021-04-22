@@ -1,0 +1,95 @@
+Кракозябры в PowerShell
+--------------------------
+Смена кодировки на 866 если кракозябры) 
+Заупстить команду в повершел -   [Console]::outputEncoding = [System.Text.Encoding]::GetEncoding('cp866')
+Получим ошибку дескриптора
+Затем запустить пинг, чтобы получить кракозябры
+Затем попробовать снова, должно заработать
+---------
+https://administra.top/powershell-ispravit-shrift-v-konsoli-ise/
+==========================================================================================================
+
+for ($t=1;$t -lt 255;$t++)
+{
+if (Test-Connection 192.168.0.$t -Count 1 -ErrorAction SilentlyContinue)
+    {
+    nslookup 192.168.0.$t
+    }
+}
+
+==========================================
+for ($t=1;$t -lt 255;$t++)
+{
+if (Test-Connection 192.168.0.$t -Count 1 -ErrorAction SilentlyContinue)
+    {
+    nslookup 192.168.0.$t
+    }
+}
+==========================================
+for ($t=180;$t -lt 190;$t++)
+{
+if (Test-Connection 192.168.124.$t -Count 1)
+    {
+    echo 'Hello'
+    }
+}
+==========================================
+for ($t=180;$t -lt 185;$t++)
+{
+if (Test-Connection 192.168.124.$t -Count 1 -ErrorAction SilentlyContinue)
+    {
+    Get-WMIObject -Class Win32_ComputerSystem -Computer "192.168.124.$t" | Select-Object Username
+    }
+}
+===========================================================
+кто залогинен
+--------------------------
+Get-WMIObject -Class Win32_ComputerSystem -Computer "w003323" | Select-Object Username
+==========================================
+Get-WMIObject -Class Win32_ComputerSystem -Computer "192.168.124.171" | Select-Object Username
+============================================================
+for ($t=170;$t -lt 185;$t++)
+{
+if (Test-Connection 192.168.124.$t -Count 1 -ErrorAction SilentlyContinue)
+    {
+    Get-WMIObject -Class Win32_ComputerSystem -Computer "192.168.124.$t" | Select-Object Username
+    }
+}
+==================================================================================
+Get-WMIObject -Class Win32_ComputerSystem -Computer "192.168.124.171" | Select-Object Username
+==============================================
+Get-WMIObject -Class Win32_ComputerSystem -Computer "192.168.124.$ip" | Select-Object Username
+==============================================
+$ipkmw = Get-Content C:\Bat\list_ip.txt
+$logs= "C:\Bat\ping-log.txt"
+foreach ($ip in $ipkmw)
+{
+	
+	$connect = test-connection -computername $ip -Count 2 -Quiet
+	if ($connect -eq $false)
+		{		
+			"Ping отсутствует: " + $ip | out-file $logs -append
+		}
+		
+	ping $ip -n 1
+}
+=============================================
+$ipkmw = Get-Content C:\Bat\list_ip.txt
+$logs= "C:\Bat\ping-log.txt"
+foreach ($ip in $ipkmw)
+{
+	
+	$connect = test-connection -computername $ip -Count 2 -Quiet
+	if ($connect -eq $false)
+		{		
+			"Ping отсутствует: " + $ip | out-file $logs -append
+		}
+		
+	quser /server:$ip
+}
+============================================
+
+	
+
+
+
